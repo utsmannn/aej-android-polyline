@@ -121,7 +121,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    @SuppressLint("MissingPermission", "SetTextI18n")
     private fun getLocation() {
         MainScope().launch {
             locationManager.getLocationFlow().collect(onLocationResult())

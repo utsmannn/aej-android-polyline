@@ -33,7 +33,7 @@
             android:value="AIzaSyAA5YTK-PnUwyTecvOCMQnjyC8T5t8oPyo" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_maps">
             <intent-filter>
@@ -42,7 +42,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MapsActivity"/>
         <activity android:name=".UserActivity"/>
+        <activity android:name=".MapsPickerActivity"/>
     </application>
 
 </manifest>
