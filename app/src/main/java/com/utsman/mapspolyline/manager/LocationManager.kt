@@ -5,6 +5,7 @@ import android.content.Context
 import android.location.Location
 import android.os.Looper
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LastLocationRequest
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -54,5 +55,20 @@ class LocationManager(private val context: Context) {
         return callbackFlow.distinctUntilChanged { old, new ->
             old.distanceTo(new) < 10f
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun getLastLocation(lastLocation: (Location) -> Unit) {
+        val lastLocationRequest = LastLocationRequest.Builder()
+            .build()
+
+        fusedLocationProvider.getLastLocation(lastLocationRequest)
+            .addOnFailureListener {
+                it.printStackTrace()
+            }
+            .addOnSuccessListener {
+                println("AAAAA -> $it")
+                lastLocation.invoke(it)
+            }
     }
 }
